@@ -1,6 +1,7 @@
 /*		Author: jianzhedeng		*/
 /*		Date: 2015.8.26		*/
-/*		Def: 初步的双向链表。已封装。		*/
+/*		Def: 初步的双向链表。已封装。通过白盒测试		*/
+/*		注意，插入结点的指针不应该是指向数组或常量的，否则将报错		*/
 #pragma  once
 #ifndef DOUBLELINKEDLIST_CPP_H
 #define DOUBLELINKEDLIST_CPP_H
@@ -17,6 +18,14 @@ class DLList
 private:
 	T *Head;
 public:
+	DLList()
+	{
+		this->Head = InitList();
+	}
+	~DLList()
+	{
+		this->Head = ReleaseList();
+	}
 	/*		生成带头结点的双向链表。返回值为头指针。		*/
 	T *InitList()
 	{
@@ -32,7 +41,7 @@ public:
 
 	T *ReleaseList()
 	{
-		for ( ; NULL != Head->next; DeleteNode(Head, 1))
+		for ( ; NULL != Head->next; DeleteNode(1))
 		{
 		}
 		free(Head);
@@ -116,9 +125,32 @@ public:
 	{
 		T *p;
 		p = (T *)calloc(1, sizeof(T));
+		p->data = rand();
 		return (p);
 	}
 
+	void ShowList()
+	{
+		int i;
+		T *p;
+		cout<<"#Have "<<CountList()<<" nodes.These nodes were listed.\n#";
+		for (i = 0, p = Head; ; p = p->next, ++i)
+		{
+			if (i > 0)
+			{
+				cout<<p->data;
+			}
+			if (p->next == NULL)
+			{
+				break;
+			} 
+			else if (i > 0)
+			{
+				cout<<"\t";
+			}
+		}
+		cout<<"\n";
+	}
 
 };
 #endif
