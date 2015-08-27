@@ -1,5 +1,6 @@
 /*		Author: jianzhedeng		*/
 /*		Date: 2015.8.26		*/
+/*		Final modified date: 2015.8.27		*/
 /*		Def: 初步的双向链表。已封装。通过白盒测试		*/
 /*		注意，插入结点的指针不应该是指向数组或常量的，否则将报错		*/
 #pragma  once
@@ -32,8 +33,11 @@ public:
 		T *Head = NULL;
 
 		Head = (T *)calloc(1, sizeof(T));
-		Head->next = NULL;
-		Head->prev = NULL;
+		if (NULL != Head)
+		{
+			Head->next = NULL;
+			Head->prev = NULL;
+		}
 
 		this->Head = Head;
 		return (Head);
