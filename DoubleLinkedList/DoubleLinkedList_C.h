@@ -11,11 +11,11 @@
 #define ERROR (1)
 typedef int status;
 /*		定义数据类型，根据需要换成用户类型		*/
-typedef int ElemType;
+typedef int ListElemType;
 /*		定义链表结点类型		*/
 typedef struct DouNode
 {
-	ElemType date;
+	ListElemType date;
 	struct DouNode *prev;
 	struct DouNode *next;
 }node, *pNode;

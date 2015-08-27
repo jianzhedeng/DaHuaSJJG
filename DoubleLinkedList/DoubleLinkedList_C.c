@@ -121,6 +121,6 @@ pNode CreateNode()
 {
 	pNode p;
 	p = (pNode)calloc(1, sizeof(node));
-	p->date = (ElemType)rand();
+	p->date = (ListElemType)rand();
 	return (p);
 }
