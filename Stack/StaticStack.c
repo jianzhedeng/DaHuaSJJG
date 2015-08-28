@@ -5,16 +5,15 @@ void ShowStack(StackElemType *Stack, int *StackLength)
 	int i;
 	StackElemType *j;
 	printf("#The length of stack is %d.These elements were listed.\n#", *StackLength);
-	for (i = 0, j = Stack; ; ++j, ++i)
+	for (i = 0, j = Stack; i < (*StackLength); ++j, ++i)
 	{
 		printf("%d", *j);
-		if (i >= *StackLength)
+		if (i < (*StackLength) - 1)
 		{
-			printf("\n");
-			break;
+			printf("\t");
 		}
-		printf("\t");
 	}
+	printf("\n");
 }
 
 StackElemType *InitStack(int *StackLength)
@@ -31,10 +30,25 @@ StackElemType *InitStack(int *StackLength)
 
 StackElemType *ReleaseStack(StackElemType *Stack, int *StackLength)
 {
-	free(StackElemType);
+	free(Stack);
 	*StackLength = 0;
 	return (NULL);
 }
 
-status Pop(StackElemType *Stack, int *StackLength)
+StackElemType Pop(StackElemType *Stack, int *StackLength)
+{
+	if ((*StackLength) > 0)
+	{
+		return (*(Stack + --(*StackLength)));
+	}
+	return (ERROR);
+}
 
+status Push(StackElemType *Stack, int *StackLength, StackElemType ele)
+{
+	if ((*StackLength) < MAXSIZE)
+	{
+		*(Stack + (*StackLength)++) = ele;
+	}
+	return (ERROR);
+}

@@ -5,7 +5,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SingleLinkedList", "SingleL
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DoubleLinkedList", "DoubleLinkedList\DoubleLinkedList.vcxproj", "{299A6679-F6C1-4350-95B9-4AB23084A9AB}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Stack", "Stack\Stack.vcxproj", "{02971B06-CB54-4C1E-8AA3-82B380802B72}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Stack", "Stack\Stack.vcxproj", "{A763CDE2-18DD-43BE-A522-E0D6C51D0F34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +21,10 @@ Global
 		{299A6679-F6C1-4350-95B9-4AB23084A9AB}.Debug|Win32.Build.0 = Debug|Win32
 		{299A6679-F6C1-4350-95B9-4AB23084A9AB}.Release|Win32.ActiveCfg = Release|Win32
 		{299A6679-F6C1-4350-95B9-4AB23084A9AB}.Release|Win32.Build.0 = Release|Win32
-		{02971B06-CB54-4C1E-8AA3-82B380802B72}.Debug|Win32.ActiveCfg = Debug|Win32
-		{02971B06-CB54-4C1E-8AA3-82B380802B72}.Debug|Win32.Build.0 = Debug|Win32
-		{02971B06-CB54-4C1E-8AA3-82B380802B72}.Release|Win32.ActiveCfg = Release|Win32
-		{02971B06-CB54-4C1E-8AA3-82B380802B72}.Release|Win32.Build.0 = Release|Win32
+		{A763CDE2-18DD-43BE-A522-E0D6C51D0F34}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A763CDE2-18DD-43BE-A522-E0D6C51D0F34}.Debug|Win32.Build.0 = Debug|Win32
+		{A763CDE2-18DD-43BE-A522-E0D6C51D0F34}.Release|Win32.ActiveCfg = Release|Win32
+		{A763CDE2-18DD-43BE-A522-E0D6C51D0F34}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

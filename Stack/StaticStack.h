@@ -10,8 +10,14 @@
 #define MAXSIZE (1024)
 #define OK (0)
 #define ERROR (1)
-typedef int StackElemType
-typedef int status
+typedef int StackElemType;
+typedef int status;
 
+StackElemType *InitStack(int *StackLength);
+StackElemType *ReleaseStack(StackElemType *Stack, int *StackLength);
+StackElemType Pop(StackElemType *Stack, int *StackLength);
+status Push(StackElemType *Stack, int *StackLength, StackElemType ele);
+
+void ShowStack(StackElemType *Stack, int *StackLength);
 
 #endif
