@@ -1,6 +1,6 @@
 /*		Author: jianzhedeng		*/
 /*		Date: 2015.8.27		*/
-/*		Def: ¾²Ì¬Õ»¡£		*/
+/*		Def: ¾²Ì¬Õ»¡£ÒÑÍ¨¹ý°×ºÐ²âÊÔ¡£		*/
 #pragma once
 #ifndef STATICSTACK_H_
 #define STATICSTACK_H_

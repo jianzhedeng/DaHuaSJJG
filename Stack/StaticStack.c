@@ -49,6 +49,7 @@ status Push(StackElemType *Stack, int *StackLength, StackElemType ele)
 	if ((*StackLength) < MAXSIZE)
 	{
 		*(Stack + (*StackLength)++) = ele;
+		return (OK);
 	}
 	return (ERROR);
 }

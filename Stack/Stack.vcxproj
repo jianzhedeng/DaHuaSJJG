@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{A763CDE2-18DD-43BE-A522-E0D6C51D0F34}</ProjectGuid>
+    <ProjectGuid>{A54FB39F-D759-43C9-A13E-97F12AAA02BF}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Stack</RootNamespace>
   </PropertyGroup>
@@ -74,8 +74,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="StaticStack.c" />
-    <ClCompile Include="test.c" />
+    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
