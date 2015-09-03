@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DoubleLinkedList", "DoubleL
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Stack", "Stack\Stack.vcxproj", "{A54FB39F-D759-43C9-A13E-97F12AAA02BF}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Queue", "Queue\Queue.vcxproj", "{A97BA41E-E284-499F-AF51-D932C7C103E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -25,6 +27,10 @@ Global
 		{A54FB39F-D759-43C9-A13E-97F12AAA02BF}.Debug|Win32.Build.0 = Debug|Win32
 		{A54FB39F-D759-43C9-A13E-97F12AAA02BF}.Release|Win32.ActiveCfg = Release|Win32
 		{A54FB39F-D759-43C9-A13E-97F12AAA02BF}.Release|Win32.Build.0 = Release|Win32
+		{A97BA41E-E284-499F-AF51-D932C7C103E7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A97BA41E-E284-499F-AF51-D932C7C103E7}.Debug|Win32.Build.0 = Debug|Win32
+		{A97BA41E-E284-499F-AF51-D932C7C103E7}.Release|Win32.ActiveCfg = Release|Win32
+		{A97BA41E-E284-499F-AF51-D932C7C103E7}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
