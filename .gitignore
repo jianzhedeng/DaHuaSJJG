@@ -1,0 +1,6 @@
+#Visual Studio 的 C++项目
+*ipch/
+*debug/
+*release/
+*.aps
+*.sdf
