@@ -20,13 +20,77 @@ private:
 	int Head;
 	int Nail;
 protected:
-	T *InitQueue();
-	T *ReleaseQueue();
+	T *InitQueue()
+	{
+		T *Queue = NULL;
+		Queue = (T *)calloc(MAXSIZE, sizeof(T));
+		if (NULL != Queue)
+		{
+			Head = 0;
+			Nail = 0;
+		}
+		return (Queue);
+	}
+
+	T *ReleaseQueue()
+	{
+		free(this->Queue);
+		Head = 0;
+		Nail = 0;
+		return (NULL);
+	}
+
 public:
-	StaticQueue();
-	~StaticQueue();
-	T *Get();
-	status Put(T ele);
-	void ShowQueue();
+	StaticQueue()
+	{
+		this->Queue = this->InitQueue();
+	}
+
+	~StaticQueue()
+	{
+		this->Queue = this->ReleaseQueue();
+	}
+
+	T Get()
+	{
+		if (Head != Nail)
+		{
+			T ele = *(Queue + Head);
+			Head = (Head + 1) % MAXSIZE;
+			return (ele);
+		}
+		return (T)(ERROR);
+	}
+
+	status Put(T ele)
+	{
+		if ((Nail + 1) % MAXSIZE != Head)
+		{
+			*(Queue + Nail) = ele;
+			Nail = (Nail + 1) % MAXSIZE;
+			return (OK);
+		}
+		return (ERROR);
+	}
+
+
+	void ShowQueue()
+	{
+		int i;
+		int j;
+		int len = (Nail - Head + MAXSIZE) % MAXSIZE;
+		printf("#The length of queue is %d.These elements were listed.\n#", len);
+		for (i = 0, j = Head; i < len; ++j, ++i)
+		{
+			j %= MAXSIZE;
+			printf("%.0lf", *(Queue + j));
+			if (i < len - 1)
+			{
+				printf("\t");
+			}
+		}
+		printf("\n");
+	}
+
 };
 #endif
