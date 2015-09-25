@@ -1,6 +1,6 @@
 /*		Author: jianzhedeng		*/
 /*		Date: 2015.9.25		*/
-/*		Def: 静态栈。已通过白盒测试。		*/
+/*		Def: 静态队列。已通过白盒测试。		*/
 #pragma once
 #ifndef STATICQUEUE_H_
 #define STATICQUEUE_H_
@@ -13,11 +13,10 @@
 typedef int QueueElemType;
 typedef int status;
 
-QueueElemType *InitQueue(int *QueueLength);
-QueueElemType *ReleaseQueue(QueueElemType *Queue, int *QueueLength);
-QueueElemType Get(QueueElemType *Queue, int *QueueLength);
-status Put(QueueElemType *Queue, int *QueueLength, QueueElemType ele);
-
-void	ShowQueue(QueueElemType *Queue, int *QueueLength);
+QueueElemType * InitQueue(int *Head, int *Nail);
+QueueElemType * ReleaseQueue(QueueElemType *Queue, int *Head, int *Nail);
+QueueElemType Get(QueueElemType *Queue, int *Head, int *Nail);
+status Put(QueueElemType *Queue, int *Head, int *Nail, QueueElemType ele);
+void ShowQueue(QueueElemType *Queue, int *Head, int *Nail);
 
 #endif

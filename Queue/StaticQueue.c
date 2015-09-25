@@ -35,9 +35,9 @@ QueueElemType Get(QueueElemType *Queue, int *Head, int *Nail)
 
 status Put(QueueElemType *Queue, int *Head, int *Nail, QueueElemType ele)
 {
-	if (*Nail + 1 != *Head)
+	if ((*Nail + 1) % MAXSIZE != *Head)
 	{
-		*Nail = ele;
+		*(Queue + *Nail) = ele;
 		*Nail = (*Nail + 1) % MAXSIZE;
 		return (OK);
 	}
