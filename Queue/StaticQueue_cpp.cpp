@@ -25,13 +25,13 @@ T *StaticQueue<T>::ReleaseQueue()
 template <typename T>
 StaticQueue<T>::StaticQueue()
 {
-	this->Queue = InitQueue();
+	this->Queue = this->InitQueue();
 }
 
 template <typename T>
 StaticQueue<T>::~StaticQueue()
 {
-	this->Queue = ReleaseQueue();
+	this->Queue = this->ReleaseQueue();
 }
 
 template <typename T>
