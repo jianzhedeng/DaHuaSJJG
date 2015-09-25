@@ -53,3 +53,4 @@ status Push(StackElemType *Stack, int *StackLength, StackElemType ele)
 	}
 	return (ERROR);
 }
+
