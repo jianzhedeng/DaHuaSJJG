@@ -10,14 +10,14 @@
 #define MAXSIZE (1024)
 #define OK (0)
 #define ERROR (1)
-typedef int StackElemType;
+typedef int QueueElemType;
 typedef int status;
 
-StackElemType *InitStack(int *StackLength);
-StackElemType *ReleaseStack(StackElemType *Stack, int *StackLength);
-StackElemType Pop(StackElemType *Stack, int *StackLength);
-status Push(StackElemType *Stack, int *StackLength, StackElemType ele);
+QueueElemType *InitQueue(int *QueueLength);
+QueueElemType *ReleaseQueue(QueueElemType *Queue, int *QueueLength);
+QueueElemType Get(QueueElemType *Queue, int *QueueLength);
+status Put(QueueElemType *Queue, int *QueueLength, QueueElemType ele);
 
-void ShowStack(StackElemType *Stack, int *StackLength);
+void ShowQueue(QueueElemType *Queue, int *QueueLength);
 
 #endif
