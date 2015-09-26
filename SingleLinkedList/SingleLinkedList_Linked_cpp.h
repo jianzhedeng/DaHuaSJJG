@@ -4,8 +4,8 @@
 #pragma  once
 #ifndef SINGLELINKEDLIST_LINKED_CPP
 #define SINGLELINKEDLIST_LINKED_CPP
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <cstdlib>
 #pragma warning(disable:4996)
 #define OK (0)
 #define ERROR (1)
