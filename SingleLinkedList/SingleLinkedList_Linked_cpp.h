@@ -11,4 +11,10 @@ using namespace std;
 #define ERROR (1)
 typedef int status;
 
+template <class T = int, int MAXSIZE = 1024>
+class SingleLinkedList
+{
+private:
+	
+};
 #endif
