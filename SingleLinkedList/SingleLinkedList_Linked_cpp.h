@@ -4,9 +4,9 @@
 #pragma  once
 #ifndef SINGLELINKEDLIST_LINKED_CPP
 #define SINGLELINKEDLIST_LINKED_CPP
-#include <cstdio>
+#include <iostream>
 #include <cstdlib>
-#pragma warning(disable:4996)
+using namespace std;
 #define OK (0)
 #define ERROR (1)
 typedef int status;
