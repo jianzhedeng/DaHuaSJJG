@@ -26,5 +26,8 @@
     <ClInclude Include="SingleLinkedList_array_c.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="SingleLinkedList_Linked_cpp.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
