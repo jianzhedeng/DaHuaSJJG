@@ -11,10 +11,44 @@ using namespace std;
 #define ERROR (1)
 typedef int status;
 
-template <class T = int, int MAXSIZE = 1024>
+template <class T = int>
 class SingleLinkedList
 {
+	class Node;
 private:
-	
+	Node *Head;
+protected:
+// 	status InitList()
+// 	{
+// 		Head = new Node<T>();
+// 		if (NULL != Head)
+// 		{
+// 			Head->next = NULL;
+// 			return (OK);
+// 		}
+// 		return (ERROR);
+// 	}
+	status ReleaseList()
+	{
+		return (ERROR);
+	}
+public:
+	class Node
+	{
+	public:
+		T data;
+		Node *next;
+	};
+	SingleLinkedList()
+	{
+// 		InitList();
+	}
+	~SingleLinkedList()
+	{
+		ReleaseList();
+	}
+
 };
+
+
 #endif
