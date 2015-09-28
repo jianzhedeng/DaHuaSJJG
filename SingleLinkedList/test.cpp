@@ -4,4 +4,6 @@ using namespace std;
 void main(void)
 {
 	SingleLinkedList<double> sll;
+	SingleLinkedList<int>::Node bd;
+
 }

@@ -10,24 +10,24 @@ using namespace std;
 #define OK (0)
 #define ERROR (1)
 typedef int status;
-
 template <class T = int>
 class SingleLinkedList
 {
+public:
 	class Node;
 private:
 	Node *Head;
 protected:
-// 	status InitList()
-// 	{
-// 		Head = new Node<T>();
-// 		if (NULL != Head)
-// 		{
-// 			Head->next = NULL;
-// 			return (OK);
-// 		}
-// 		return (ERROR);
-// 	}
+	status InitList()
+	{
+		Head = new Node();
+		if (NULL != Head)
+		{
+			Head->next = NULL;
+			return (OK);
+		}
+		return (ERROR);
+	}
 	status ReleaseList()
 	{
 		return (ERROR);
@@ -38,14 +38,23 @@ public:
 	public:
 		T data;
 		Node *next;
+		Node() :data(0), next(NULL){;}
+		Node(T ele) :data(ele), next(NULL){;}
 	};
 	SingleLinkedList()
 	{
-// 		InitList();
+		InitList();
 	}
 	~SingleLinkedList()
 	{
 		ReleaseList();
+	}
+	status Insert(const Node &node, const int pos)
+	{
+		/*	检查pos是否大于节点数量		*/
+		/*	pos为零则插入最后		*/
+		/*	pos不为零则插入相应节点之前		*/
+		return (ERROR);
 	}
 
 };
