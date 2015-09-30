@@ -5,5 +5,6 @@ void main(void)
 {
 	SingleLinkedList<double> sll;
 	SingleLinkedList<int>::Node bd;
-
+	sll.Insert(0.1);
+	sll.Print();
 }

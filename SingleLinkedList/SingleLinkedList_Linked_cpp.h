@@ -32,6 +32,15 @@ protected:
 	{
 		return (ERROR);
 	}
+	int GetLength()
+	{
+		int i = 0;
+		Node *p = NULL;
+// 		for (i = 0, p = this->Head; p->next != NULL; ++i, p = p->next)
+// 		{
+// 		}
+		return (i);
+	}
 public:
 	class Node
 	{
@@ -49,17 +58,54 @@ public:
 	{
 		ReleaseList();
 	}
-	status Insert(const Node &node, const int pos)
+	status Insert(Node &node, const int pos = 0)
 	{
 		/*	检查pos是否大于节点数量		*/
-
 		/*	pos为零则插入最后		*/
-
 		/*	pos不为零则插入相应节点之前		*/
-
+		int i = 0;
+		Node *p = NULL;
+		if (pos > 0 && pos <= GetLength())
+		{
+			for (i = 0, p = this->Head; i < (pos - 1); ++i, p = p->next)
+			{
+			}
+			node.next = p->next;
+			p->next = &node;
+		}
+		else if (pos == 0)
+		{
+			for (i = 0, p = this->Head; p->next != NULL; ++i, p = p->next)
+			{
+			}
+			node.next = p->next;
+			p->next = &node;
+		}
 		return (ERROR);
 	}
-
+	status Insert(const T ele, const int pos = 0)
+	{
+		Node node(ele);
+		return (Insert(node, pos));
+	}
+	void Print()
+	{
+		Node *p = NULL;
+		int i = 0, len = GetLength();
+		cout << "This is a SingleLinkedList, with " << len << " nodes." << endl;
+// 		for (i = 0, p = this->Head; p->next != NULL; ++i, p = p->next)
+// 		{
+// 			cout << p->next->data;
+// 			if (i < len)
+// 			{
+// 				cout << "\t";
+// 			} 
+// 			else if (i == len)
+// 			{
+// 				cout << endl;
+// 			}
+// 		}
+	}
 };
 
 
