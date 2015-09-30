@@ -52,8 +52,11 @@ public:
 	status Insert(const Node &node, const int pos)
 	{
 		/*	检查pos是否大于节点数量		*/
+
 		/*	pos为零则插入最后		*/
+
 		/*	pos不为零则插入相应节点之前		*/
+
 		return (ERROR);
 	}
 
