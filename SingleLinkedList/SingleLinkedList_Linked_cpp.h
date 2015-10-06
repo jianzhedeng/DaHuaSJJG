@@ -32,6 +32,7 @@ protected:
 	{
 		return (ERROR);
 	}
+
 	int GetLength()
 	{
 		int i = 0;
