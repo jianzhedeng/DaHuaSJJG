@@ -36,9 +36,9 @@ protected:
 	{
 		int i = 0;
 		Node *p = NULL;
-// 		for (i = 0, p = this->Head; p->next != NULL; ++i, p = p->next)
-// 		{
-// 		}
+		for (i = 0, p = this->Head; p->next != NULL; ++i, p = p->next)
+		{
+		}
 		return (i);
 	}
 public:
@@ -72,6 +72,7 @@ public:
 			}
 			node.next = p->next;
 			p->next = &node;
+			return (OK);
 		}
 		else if (pos == 0)
 		{
@@ -80,31 +81,33 @@ public:
 			}
 			node.next = p->next;
 			p->next = &node;
+			return (OK);
 		}
 		return (ERROR);
 	}
 	status Insert(const T ele, const int pos = 0)
 	{
-		Node node(ele);
-		return (Insert(node, pos));
+		/*	此处应使用new关键字来申请结点空间		*/
+		Node *p = new Node(ele);
+		return (Insert(*p, pos));
 	}
 	void Print()
 	{
 		Node *p = NULL;
 		int i = 0, len = GetLength();
 		cout << "This is a SingleLinkedList, with " << len << " nodes." << endl;
-// 		for (i = 0, p = this->Head; p->next != NULL; ++i, p = p->next)
-// 		{
-// 			cout << p->next->data;
-// 			if (i < len)
-// 			{
-// 				cout << "\t";
-// 			} 
-// 			else if (i == len)
-// 			{
-// 				cout << endl;
-// 			}
-// 		}
+		for (i = 0, p = this->Head; p->next != NULL; ++i, p = p->next)
+		{
+			cout << p->next->data;
+			if (i < len - 1)
+			{
+				cout << "\t";
+			} 
+			else if (i == len - 1)
+			{
+				cout << endl;
+			}
+		}
 	}
 };
 
