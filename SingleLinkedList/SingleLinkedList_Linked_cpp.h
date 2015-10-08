@@ -10,7 +10,7 @@ using namespace std;
 #define OK (0)
 #define ERROR (1)
 typedef int status;
-template <class T = int>
+template <class T>
 class SingleLinkedList
 {
 public:
@@ -18,29 +18,31 @@ public:
 private:
 	Node *Head;
 protected:
-	status InitList()
-	{
-		Head = new Node();
-		if (NULL != Head)
-		{
-			Head->next = NULL;
-			return (OK);
-		}
-		return (ERROR);
-	}
-	status ReleaseList()
-	{
-		return (ERROR);
-	}
+	status InitList();
+	status ReleaseList();
 
-	int GetLength()
+	int GetLength();
+	Node *GetNode(const int pos = 0)
 	{
 		int i = 0;
+		int num = GetLength();
 		Node *p = NULL;
-		for (i = 0, p = this->Head; p->next != NULL; ++i, p = p->next)
+		if (pos > 0 && pos < num)
 		{
+			for (i = 0, p = this->Head; i < pos; ++i, p = p->next)
+			{
+			}
+			return (p);
 		}
-		return (i);
+		else if (pos == 0 || pos == num)
+		{
+			for (i = 0, p = this->Head; i < num; ++i, p = p->next)
+			{
+			}
+			return (p);
+		}
+		return (NULL);
+
 	}
 public:
 	class Node
@@ -124,12 +126,45 @@ public:
 		p = this->Take(pos);
 		if (NULL != p)
 		{
+			/*	适时释放		*/
 			return (OK);
 		} 
 		else
 		{
 			return (ERROR);
 		}
+	}
+	T Get(const int pos = 0)
+	{
+		int i = 0;
+		int num = GetLength();
+		Node *p = NULL;
+		if (pos > 0 && pos < num)
+		{
+			for (i = 0, p = this->Head; i < pos; ++i, p = p->next)
+			{
+			}
+			return (p->data);
+		}
+		else if (pos == 0 || pos == num)
+		{
+			for (i = 0, p = this->Head; i < num; ++i, p = p->next)
+			{
+			}
+			return (p->data);
+		}
+		return (NULL);
+	}
+	status Set(const T ele, const int pos = 0)
+	{
+		Node *p = NULL;
+		p = this->GetNode(pos);
+		if (NULL != p)
+		{
+			p->data = ele;
+			return (OK);
+		}
+		return (ERROR);
 	}
 	void Print()
 	{
@@ -150,6 +185,44 @@ public:
 		}
 	}
 };
+
+template <class T>
+status SingleLinkedList<T>::InitList()
+{
+	Head = new Node();
+	if (NULL != Head)
+	{
+		Head->next = NULL;
+		return (OK);
+	}
+	return (ERROR);
+}
+
+template <class T>
+status SingleLinkedList<T>::ReleaseList()
+{
+	Node *p = NULL, *q = NULL;
+	for (p = this->Head->next; NULL != p;)
+	{
+		q = p->next;
+		/*	delete p指向的对象		*/
+		p = q;
+	}
+	delete (this->Head);
+	return (OK);
+}
+
+template <class T>
+int SingleLinkedList<T>::GetLength()
+{
+	int i = 0;
+	Node *p = NULL;
+	for (i = 0, p = this->Head; p->next != NULL; ++i, p = p->next)
+	{
+	}
+	return (i);
+}
+
 
 
 #endif
