@@ -92,6 +92,32 @@ public:
 		Node *p = new Node(ele);
 		return (Insert(*p, pos));
 	}
+	Node *Take(const int pos = 0)
+	{
+		int i = 0;
+		const int num = GetLength();
+		Node *p = NULL, *q = NULL;
+		if (pos > 0 && pos < num)
+		{
+			for (i = 0, p = this->Head; i < (pos - 1); ++i, p = p->next)
+			{
+			}
+			q = p->next;
+			p->next = p->next->next;
+			q->next = NULL;
+			return (q);
+		}
+		else if (pos == num || pos == 0)
+		{
+			for (i = 0, p = this->Head; i < (num - 1); ++i, p = p->next)
+			{
+			}
+			q = p->next;
+			p->next = p->next->next;
+			return (q);
+		}
+		return (p);
+	}
 	void Print()
 	{
 		Node *p = NULL;
