@@ -118,6 +118,19 @@ public:
 		}
 		return (p);
 	}
+	status Delete(const int pos = 0)
+	{
+		Node *p = NULL;
+		p = this->Take(pos);
+		if (NULL != p)
+		{
+			return (OK);
+		} 
+		else
+		{
+			return (ERROR);
+		}
+	}
 	void Print()
 	{
 		Node *p = NULL;
