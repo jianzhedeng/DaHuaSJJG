@@ -10,20 +10,23 @@ using namespace std;
 #define OK (0)
 #define ERROR (1)
 typedef int status;
+ 
 template <class T>
+class SingleLinkedQueue;
+
+template <class T = int>
 class SingleLinkedList
 {
 public:
 	class Node;
+ 	friend void SingleLinkedQueue<T>::Print();
 private:
 	Node *Head;
 protected:
 	status InitList();
 	status ReleaseList();
-
-	int GetLength();
 	Node *GetNode(const int pos = 0);
-
+	void PrintList();
 public:
 	class Node;
 	SingleLinkedList();
@@ -35,8 +38,13 @@ public:
 	T Get(const int pos = 0);
 	status Set(const T ele, const int pos = 0);
 	int Seek(const T ele);
+	int GetLength();
 	void Print();
 };
+
+/*	C++11的模板别名，VS2013开始支持该特性，低版本编译器应将该块注释掉。		*/
+template <class T = int>
+using SList = SingleLinkedList<T>;
 
 template <class T>
 class SingleLinkedList<T>::Node
@@ -264,11 +272,11 @@ int SingleLinkedList<T>::Seek(const T ele)
 }
 
 template <class T>
-void SingleLinkedList<T>::Print()
+void SingleLinkedList<T>::PrintList()
 {
 	Node *p = NULL;
-	int i = 0, len = GetLength();
-	cout << "This is a SingleLinkedList, with " << len << " nodes." << endl;
+	int i = 0;
+	int len = this->GetLength();
 	for (i = 0, p = this->Head; p->next != NULL; ++i, p = p->next)
 	{
 		cout << p->next->data;
@@ -281,6 +289,14 @@ void SingleLinkedList<T>::Print()
 			cout << endl;
 		}
 	}
+}
+
+template <class T>
+void SingleLinkedList<T>::Print()
+{
+	int len = GetLength();
+	cout << "This is a SingleLinkedList, with " << len << " nodes." << endl;
+	this->PrintList();
 }
 
 #endif
