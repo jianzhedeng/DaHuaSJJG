@@ -5,7 +5,7 @@
 #ifndef SINGLELINKEDLIST_LINKED_CPP
 #define SINGLELINKEDLIST_LINKED_CPP
 #include <iostream>
-#include <cstdlib>
+// #include <cstdlib>
 using namespace std;
 #define OK (0)
 #define ERROR (1)
@@ -22,72 +22,32 @@ protected:
 	status ReleaseList();
 
 	int GetLength();
-	Node *GetNode(const int pos = 0)
-	{
-		int i = 0;
-		int num = GetLength();
-		Node *p = NULL;
-		if (pos > 0 && pos < num)
-		{
-			for (i = 0, p = this->Head; i < pos; ++i, p = p->next)
-			{
-			}
-			return (p);
-		}
-		else if (pos == 0 || pos == num)
-		{
-			for (i = 0, p = this->Head; i < num; ++i, p = p->next)
-			{
-			}
-			return (p);
-		}
-		return (NULL);
-	}
+	Node *GetNode(const int pos = 0);
 
 public:
-	class Node
-	{
-	public:
-		T data;
-		Node *next;
-		Node() :data(0), next(NULL){;}
-		Node(T ele) :data(ele), next(NULL){;}
-	};
+	class Node;
 	SingleLinkedList();
 	~SingleLinkedList();
 	status Insert(Node &node, const int pos = 0);
 	status Insert(const T ele, const int pos = 0);
-	Node *Take(const int pos = 0)
-	{
-		int i = 0;
-		const int num = GetLength();
-		Node *p = NULL, *q = NULL;
-		if (pos > 0 && pos < num)
-		{
-			for (i = 0, p = this->Head; i < (pos - 1); ++i, p = p->next)
-			{
-			}
-			q = p->next;
-			p->next = p->next->next;
-			q->next = NULL;
-			return (q);
-		}
-		else if (pos == num || pos == 0)
-		{
-			for (i = 0, p = this->Head; i < (num - 1); ++i, p = p->next)
-			{
-			}
-			q = p->next;
-			p->next = p->next->next;
-			return (q);
-		}
-		return (p);
-	}
-
+	Node *Take(const int pos = 0);
 	status Delete(const int pos = 0);
 	T Get(const int pos = 0);
 	status Set(const T ele, const int pos = 0);
+	int Seek(const T ele);
 	void Print();
+};
+
+template <class T>
+class SingleLinkedList<T>::Node
+{
+public:
+	T data;
+	Node *next;
+	int AutoDelete;
+	Node() :data(0), next(NULL), AutoDelete(0){ ; }
+	Node(T ele) :data(ele), next(NULL), AutoDelete(0){ ; }
+	Node(T ele, int iAutoDelete) :data(ele), next(NULL), AutoDelete(iAutoDelete){ ; }
 };
 
 template <class T>
@@ -109,7 +69,11 @@ status SingleLinkedList<T>::ReleaseList()
 	for (p = this->Head->next; NULL != p;)
 	{
 		q = p->next;
-		/*	delete p指向的对象		*/
+		/*	适时delete p指向的对象		*/
+		if (p->AutoDelete)
+		{
+			delete(p);
+		}
 		p = q;
 	}
 	delete (this->Head);
@@ -125,6 +89,29 @@ int SingleLinkedList<T>::GetLength()
 	{
 	}
 	return (i);
+}
+
+template <class T>
+typename SingleLinkedList<T>::Node *SingleLinkedList<T>::GetNode(const int pos)
+{
+	int i = 0;
+	int num = GetLength();
+	Node *p = NULL;
+	if (pos > 0 && pos < num)
+	{
+		for (i = 0, p = this->Head; i < pos; ++i, p = p->next)
+		{
+		}
+		return (p);
+	}
+	else if (pos == 0 || pos == num)
+	{
+		for (i = 0, p = this->Head; i < num; ++i, p = p->next)
+		{
+		}
+		return (p);
+	}
+	return (NULL);
 }
 
 template <class T>
@@ -172,8 +159,36 @@ template <class T>
 status SingleLinkedList<T>::Insert(const T ele, const int pos)
 {
 	/*	此处应使用new关键字来申请结点空间		*/
-	Node *p = new Node(ele);
+	Node *p = new Node(ele, 1);
 	return (Insert(*p, pos));
+}
+
+template <class T>
+typename SingleLinkedList<T>::Node *SingleLinkedList<T>::Take(const int pos)
+{
+	int i = 0;
+	const int num = GetLength();
+	Node *p = NULL, *q = NULL;
+	if (pos > 0 && pos < num)
+	{
+		for (i = 0, p = this->Head; i < (pos - 1); ++i, p = p->next)
+		{
+		}
+		q = p->next;
+		p->next = p->next->next;
+		q->next = NULL;
+		return (q);
+	}
+	else if (pos == num || pos == 0)
+	{
+		for (i = 0, p = this->Head; i < (num - 1); ++i, p = p->next)
+		{
+		}
+		q = p->next;
+		p->next = p->next->next;
+		return (q);
+	}
+	return (p);
 }
 
 template <class T>
@@ -184,6 +199,10 @@ status SingleLinkedList<T>::Delete(const int pos)
 	if (NULL != p)
 	{
 		/*	适时释放		*/
+		if (p->AutoDelete)
+		{
+			delete(p);
+		}
 		return (OK);
 	}
 	else
@@ -226,6 +245,22 @@ status SingleLinkedList<T>::Set(const T ele, const int pos)
 		return (OK);
 	}
 	return (ERROR);
+}
+
+template <class T>
+int SingleLinkedList<T>::Seek(const T ele)
+{
+	/*	由于C++的 == 判定方式，仅对基本类型起作用。需要重载 == 运算符。		*/
+	int i = 0;
+	Node *p = NULL;
+	for (i = 0, p = this->Head; NULL != p->next; ++i, p = p->next)
+	{
+		if (ele == p->next->data)
+		{
+			return (i + 1);
+		}
+	}
+	return (0);
 }
 
 template <class T>

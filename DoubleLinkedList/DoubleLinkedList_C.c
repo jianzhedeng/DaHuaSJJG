@@ -29,8 +29,11 @@ pNode InitList()
 	pNode Head = NULL;
 
 	Head = (pNode)calloc(1, sizeof(node));
-	Head->next = NULL;
-	Head->prev = NULL;
+	if (NULL != Head)
+	{
+		Head->next = NULL;
+		Head->prev = NULL;
+	}
 
 	return (Head);
 }
@@ -83,7 +86,10 @@ status InsertNode(pNode Head, const int pos, pNode ele)
 		{
 			ele->next->prev = ele;
 		}
-		p->next = ele;
+		if (NULL != p)
+		{
+			p->next = ele;
+		}
 		return (OK);
 	}
 	return (ERROR);
@@ -121,6 +127,9 @@ pNode CreateNode()
 {
 	pNode p;
 	p = (pNode)calloc(1, sizeof(node));
-	p->date = (ListElemType)rand();
+	if (NULL != p)
+	{
+		p->date = (ListElemType)rand();
+	}
 	return (p);
 }

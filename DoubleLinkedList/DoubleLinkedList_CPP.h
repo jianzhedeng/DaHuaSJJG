@@ -91,7 +91,10 @@ public:
 			{
 				ele->next->prev = ele;
 			}
-			p->next = ele;
+			if (NULL != p)
+			{
+				p->next = ele;
+			}
 			return (OK);
 		}
 		return (ERROR);
@@ -129,7 +132,10 @@ public:
 	{
 		T *p;
 		p = (T *)calloc(1, sizeof(T));
-		p->data = rand();
+		if (NULL != p)
+		{
+			p->data = rand();
+		}
 		return (p);
 	}
 

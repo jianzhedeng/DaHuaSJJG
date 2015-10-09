@@ -10,6 +10,9 @@ void main(void)
 	sll.Insert(0.1);
 	sll.Insert(2);
 	sll.Insert(128);
+	sll.Insert(bc[0], 1);
+	sll.Insert(bc[1], 2);
+
 	sll.Print();
 	pbd = sll.Take();
 	cout << pbd->data << endl;
@@ -22,4 +25,11 @@ void main(void)
 	cout << sll.Get(1) << endl;
 	sll.Set(6666);
 	sll.Print();
+	cout << "EG3." << endl;
+	sll.Insert(23);
+	sll.Insert(24);
+	sll.Insert(23);
+	sll.Insert(25);
+	sll.Print();
+	cout << sll.Seek(23) << endl;
 }
