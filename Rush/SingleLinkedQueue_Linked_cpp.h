@@ -17,7 +17,11 @@ private:
 public:
 	SingleLinkedQueue();
 	~SingleLinkedQueue();
-	status Put(T ele);
+	template <class U>
+	friend ostream& operator << (ostream &out, const SingleLinkedQueue<U> &obj);
+	template <class U>
+	friend istream& operator >> (istream &in, const SingleLinkedQueue<U> &obj);
+	status Put(T ele) const;
 	T Get();
 	int GetLength();
 	void PrintQueue();
@@ -39,8 +43,24 @@ SingleLinkedQueue<T>::~SingleLinkedQueue()
 	delete(sll);
 }
 
+template <class U>
+inline ostream& operator << (ostream &out, const SingleLinkedQueue<U> &obj)
+{
+	out << *obj.sll;
+	return (out);
+}
+
+template <class U>
+inline istream& operator >> (istream &in, const SingleLinkedQueue<U> &obj)
+{
+	U ele;
+	cin >> ele;
+	obj.Put(ele);
+	return (in);
+}
+
 template <class T>
-status SingleLinkedQueue<T>::Put(T ele)
+status SingleLinkedQueue<T>::Put(T ele) const
 {
 	return (sll->Insert(ele));
 }

@@ -17,7 +17,11 @@ private:
 public:
 	SingleLinkedStack();
 	~SingleLinkedStack();
-	status Push(T ele);
+	template <class U>
+	friend ostream& operator << (ostream &out, const SingleLinkedStack<U> &obj);
+	template <class U>
+	friend istream& operator >> (istream &in, const SingleLinkedStack<U> &obj);
+	status Push(T ele) const;
 	T Pop();
 	int GetLength();
 	void PrintStack();
@@ -39,8 +43,24 @@ SingleLinkedStack<T>::~SingleLinkedStack()
 	delete(sll);
 }
 
+template <class U>
+inline ostream& operator << (ostream &out, const SingleLinkedStack<U> &obj)
+{
+	out << *obj.sll;
+	return (out);
+}
+
+template <class U>
+inline istream& operator >> (istream &in, const SingleLinkedStack<U> &obj)
+{
+	U ele;
+	cin >> ele;
+	obj.Push(ele);
+	return (in);
+}
+
 template <class T>
-status SingleLinkedStack<T>::Push(T ele)
+status SingleLinkedStack<T>::Push(T ele) const
 {
 	return (sll->Insert(ele, 1));
 }

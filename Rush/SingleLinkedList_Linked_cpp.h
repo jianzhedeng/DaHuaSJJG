@@ -11,21 +11,21 @@ using namespace std;
 #define ERROR (1)
 typedef int status;
  
-template <class T>
-class SingleLinkedQueue;
-
-template <class T>
-class SingleLinkedStack;
-
+// template <class T>
+// class SingleLinkedQueue;
+// 
+// template <class T>
+// class SingleLinkedStack;
+// 
 template <class T = int>
 class SingleLinkedList
 {
 public:
 	class Node;
- 	friend void SingleLinkedQueue<T>::Print();
-	friend void SingleLinkedStack<T>::Print();
-	friend class SingleLinkedQueue<T>;
-	friend class SingleLinkedStack<T>;
+//  	friend void SingleLinkedQueue<T>::Print();
+// 	friend void SingleLinkedStack<T>::Print();
+// 	friend class SingleLinkedQueue<T>;
+// 	friend class SingleLinkedStack<T>;
 private:
 	Node *Head;
 protected:
@@ -41,7 +41,7 @@ public:
 	template <class U>
 	friend istream& operator >> (istream &in, const SingleLinkedList<U> &obj);
 	status Insert(Node &node, const int pos = 0) const;
-	status Insert(const T ele, const int pos = 0);
+	status Insert(const T ele, const int pos = 0) const;
 	Node *Take(const int pos = 0);
 	status Delete(const int pos = 0);
 	T Get(const int pos = 0);
@@ -144,7 +144,7 @@ SingleLinkedList<T>::~SingleLinkedList()
 	ReleaseList();
 }
 
-template <class U = int>
+template <class U>
 inline ostream& operator << (ostream &out, const SingleLinkedList<U> &obj)
 {
 	typename SingleLinkedList<U>::Node *p = NULL;
@@ -161,13 +161,12 @@ inline ostream& operator << (ostream &out, const SingleLinkedList<U> &obj)
 	return (out);
 }
 
-template <class U = int>
+template <class U>
 inline istream& operator >> (istream &in, const SingleLinkedList<U> &obj)
 {
 	U ele;
 	cin >> ele;
-	typename SingleLinkedList<U>::Node *p = new SingleLinkedList<U>::Node(ele, 1);
-	obj.Insert(*p);
+	obj.Insert(ele);
 	return (in);
 }
 
@@ -201,7 +200,7 @@ status SingleLinkedList<T>::Insert(Node &node, const int pos) const
 }
 
 template <class T>
-status SingleLinkedList<T>::Insert(const T ele, const int pos)
+status SingleLinkedList<T>::Insert(const T ele, const int pos) const
 {
 	/*	此处应使用new关键字来申请结点空间		*/
 	Node *p = new Node(ele, 1);
