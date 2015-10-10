@@ -19,6 +19,8 @@ public:
 	~SingleLinkedQueue();
 	status Put(T ele);
 	T Get();
+	int GetLength();
+	void PrintQueue();
 	void Print();
 };
 
@@ -49,6 +51,18 @@ T SingleLinkedQueue<T>::Get()
 	T flag = sll->Get(1);
 	sll->Delete(1);
 	return (flag);
+}
+
+template <class T>
+int SingleLinkedQueue<T>::GetLength()
+{
+	return (sll->GetLength());
+}
+
+template <class T>
+void SingleLinkedQueue<T>::PrintQueue()
+{
+	return (sll->PrintList());
 }
 
 template <class T>

@@ -14,19 +14,24 @@ typedef int status;
 template <class T>
 class SingleLinkedQueue;
 
+template <class T>
+class SingleLinkedStack;
+
 template <class T = int>
 class SingleLinkedList
 {
 public:
 	class Node;
  	friend void SingleLinkedQueue<T>::Print();
+	friend void SingleLinkedStack<T>::Print();
+	friend class SingleLinkedQueue<T>;
+	friend class SingleLinkedStack<T>;
 private:
 	Node *Head;
 protected:
 	status InitList();
 	status ReleaseList();
 	Node *GetNode(const int pos = 0);
-	void PrintList();
 public:
 	class Node;
 	SingleLinkedList();
@@ -39,6 +44,7 @@ public:
 	status Set(const T ele, const int pos = 0);
 	int Seek(const T ele);
 	int GetLength();
+	void PrintList();
 	void Print();
 };
 
@@ -142,7 +148,7 @@ status SingleLinkedList<T>::Insert(Node &node, const int pos)
 	/*	pos不为零则插入相应节点之前		*/
 	int i = 0;
 	Node *p = NULL;
-	if (pos > 0 && pos <= GetLength())
+	if (pos > 0 && pos <= GetLength() + 1)
 	{
 		for (i = 0, p = this->Head; i < (pos - 1); ++i, p = p->next)
 		{
