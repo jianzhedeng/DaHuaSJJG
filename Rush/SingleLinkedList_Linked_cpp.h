@@ -36,14 +36,18 @@ public:
 	class Node;
 	SingleLinkedList();
 	~SingleLinkedList();
-	status Insert(Node &node, const int pos = 0);
+	template <class U>
+	friend ostream& operator << (ostream &out, const SingleLinkedList<U> &obj);
+	template <class U>
+	friend istream& operator >> (istream &in, const SingleLinkedList<U> &obj);
+	status Insert(Node &node, const int pos = 0) const;
 	status Insert(const T ele, const int pos = 0);
 	Node *Take(const int pos = 0);
 	status Delete(const int pos = 0);
 	T Get(const int pos = 0);
 	status Set(const T ele, const int pos = 0);
 	int Seek(const T ele);
-	int GetLength();
+	int GetLength() const;
 	void PrintList();
 	void Print();
 };
@@ -95,7 +99,7 @@ status SingleLinkedList<T>::ReleaseList()
 }
 
 template <class T>
-int SingleLinkedList<T>::GetLength()
+int SingleLinkedList<T>::GetLength() const
 {
 	int i = 0;
 	Node *p = NULL;
@@ -140,8 +144,35 @@ SingleLinkedList<T>::~SingleLinkedList()
 	ReleaseList();
 }
 
+template <class U = int>
+inline ostream& operator << (ostream &out, const SingleLinkedList<U> &obj)
+{
+	typename SingleLinkedList<U>::Node *p = NULL;
+	int i = 0;
+	int len = obj.GetLength();
+	for (i = 0, p = obj.Head; p->next != NULL; ++i, p = p->next)
+	{
+		out << p->next->data;
+		if (i < len - 1)
+		{
+			out << "\t";
+		}
+	}
+	return (out);
+}
+
+template <class U = int>
+inline istream& operator >> (istream &in, const SingleLinkedList<U> &obj)
+{
+	U ele;
+	cin >> ele;
+	typename SingleLinkedList<U>::Node *p = new SingleLinkedList<U>::Node(ele, 1);
+	obj.Insert(*p);
+	return (in);
+}
+
 template <class T>
-status SingleLinkedList<T>::Insert(Node &node, const int pos)
+status SingleLinkedList<T>::Insert(Node &node, const int pos) const
 {
 	/*	检查pos是否大于节点数量		*/
 	/*	pos为零则插入最后		*/
@@ -278,27 +309,13 @@ int SingleLinkedList<T>::Seek(const T ele)
 }
 
 template <class T>
-void SingleLinkedList<T>::PrintList()
+inline void SingleLinkedList<T>::PrintList()
 {
-	Node *p = NULL;
-	int i = 0;
-	int len = this->GetLength();
-	for (i = 0, p = this->Head; p->next != NULL; ++i, p = p->next)
-	{
-		cout << p->next->data;
-		if (i < len - 1)
-		{
-			cout << "\t";
-		}
-		else if (i == len - 1)
-		{
-			cout << endl;
-		}
-	}
+	cout << *this << endl;
 }
 
 template <class T>
-void SingleLinkedList<T>::Print()
+inline void SingleLinkedList<T>::Print()
 {
 	int len = GetLength();
 	cout << "This is a SingleLinkedList, with " << len << " nodes." << endl;
